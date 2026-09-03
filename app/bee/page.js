@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
@@ -2645,7 +2645,7 @@ const SUNNAH_LIST = [
       "قول: سبحان الله وبحمده، مائة مرة خلال اليوم."
   }
 ];
-
+export const dynamic = 'force-dynamic';
 // 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
 let firstLoginDate = localStorage.getItem('firstLoginDate');
 
@@ -2680,14 +2680,7 @@ export default function IslamicLibraryApp() {
   const [streak, setStreak] = useState(0);
   const [isDoneToday, setIsDoneToday] = useState(false);
 
-  // useEffect(() => {
-  //   const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
-  //   const lastDoneDate = localStorage.getItem('lastSunnahDate');
-  //   const today = new Date().toDateString();
 
-  //   setStreak(savedStreak);
-  //   setIsDoneToday(lastDoneDate === today);
-  // }, []);
 useEffect(() => {
   if (typeof window !== 'undefined') {
     const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);

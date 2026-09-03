@@ -45,6 +45,7 @@
 //   </button>
 // </div>
 // ); }
+
 "use client"; import { useState, useEffect } from "react"; import styles from "./welcome.module.css";
 export default function Welcome({ onEnter }) { const [noPosition, setNoPosition] = useState({ top: "60%", left: "55%" }); const [isMounted, setIsMounted] = useState(false); const [showWelcome, setShowWelcome] = useState(false);
 useEffect(() => { setIsMounted(true); // بنفحص إذا المستخدم شاف صفحة الـ Welcome من قبل 
