@@ -1,21 +1,4 @@
 
-//   {
-//     title: "صلاة الضحى",
-//     description: "إحياء صلاة الضحى (أقلها ركعتان وأفضلها ثماني ركعات)، فهي صلاة الأوابين وتعدل صدقة عن كل سلامى في الجسم.",
-//     hadith: "عن أبي هريرة رضي الله عنه قال: «أوصاني خليلي بثلاث... وركعتي الضحى» (متفق عليه)."
-//   },
-//   {
-//     title: "نفض الفراش",
-//     description: "نفض الفراش قبل النوم ثلاث مرات، فهذه سنة مهجورة غفل عنها الكثيرون.",
-//     hadith: "قال رسول الله ﷺ: «إذا أوى أحدكم إلى فراشه فليأخذ فِراشَه فلينفضه...» (رواه البخاري ومسلم)."
-//   },
-//   {
-//     title: "النوم على طهارة",
-//     description: "الوضوء قبل النوم، فالنبي ﷺ كان يتوضأ وضوءه للصلاة قبل أن يخلد إلى فراشه.",
-//     hadith: "قال رسول الله ﷺ لمن أراد النوم: «توضأ وضوءك للصلاة، ثم اضطجع على شقك الأيمن» (متفق عليه)."
-//   },
-
-
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
@@ -2691,9 +2674,22 @@ const dayIndex = diffDays % dailyContent.length;
 const diffWeeks = Math.floor(diffDays / 7);
 
 // 3. تحديد الـ Index الخاص بالسنة المهجورة بناءً على الأسبوع الحالي
-const sunnahIndex = diffWeeks % SUNNAH_LIST.length; // استبدلي sunanArray باسم مصفوفة السنن المهجورة عندك
+const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
+ 
 
 
+
+export default function BeePage() {
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("key");
+    if (savedData) {
+      setData(savedData);
+    }
+  }, []);
+
+}
 export default function IslamicLibraryApp() {
   const [streak, setStreak] = useState(0);
   const [isDoneToday, setIsDoneToday] = useState(false);
@@ -2744,44 +2740,6 @@ export default function IslamicLibraryApp() {
             <img src={myImage.src || myImage} alt="bee" className="w-full h-full mx-auto mt-4" />
         </div>
       </div>
-
-      {/* صندوق السنن المهجورة */}
-      {/* <div className="md:col-span-6 bg-[url('../public/images/badges/p16.jpg')] bg-opacity-50 bg-cover bg-center bg-full rounded-[40px] p-8 border-2 border-[#e8d5de] shadow-sm ">
-        <h2 className="text-xl font-bold text-[#e87ea8] text-center mb-6"> السنن المهجورة</h2>
-    
-        <div className="bg-[#feebef] rounded-[32px] p-6 mb-6 " >
-          <h3 className="text-lg font-bold text-[#fb93b0] mb-2 text-center">{currentSunnah.name}</h3>
-          <p className="text-xs text-gray-600 italic">{currentSunnah.hadith}</p>
-             <p className="text-xs text-gray-600">اسم الراوي : {currentSunnah.narrator} و المصدر : {currentSunnah.source}</p>
-             <p className="text-xs text-gray-400 italic">{currentSunnah.application}</p>
-             
-        </div> */}
-         
-        {/* الـ Progress Bar */}
-        {/* <div className="mb-6">
-          <div className="flex justify-between text-xs font-bold text-[#eb7ca4] mb-2">
-            <span>مدة التزامك بالسنة</span>
-            <span>{streak} / 365 يوم</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-            <div className="bg-[#eb7ca4] h-full transition-all duration-500" style={{ width: `${progress}%` }} />
-          </div>
-        </div>
-
-        <button 
-          onClick={handleConfirm}
-          disabled={isDoneToday}
-          className={`w-full py-4 rounded-2xl text-sm font-bold transition-all ${
-            isDoneToday ? "bg-[#eb7ca4] text-[#ffffff] cursor-not-allowed" : "bg-[#f2a1b6] text-white hover:bg-[#ffc9d7]"
-          }`}
-        >
-          {/* {isDoneToday ? "تم إثبات التزام اليوم ✅" : "تم إثبات التزام اليوم 🌸"} */}
-           {/* {isDoneToday ? "بارك الله فيك، أحييت السنة اليوم! ✨" : "أحييت هذه السنة اليوم ✅"} */}
-        {/* </button>
-      </div> */}
-    {/* </div> */} 
-
-{/* صندوق السنن المهجورة */}
 
 <div
 
