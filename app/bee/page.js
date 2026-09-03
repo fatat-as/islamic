@@ -1,4 +1,4 @@
-
+export const dynamic = 'force-dynamic';
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
@@ -2680,15 +2680,24 @@ export default function IslamicLibraryApp() {
   const [streak, setStreak] = useState(0);
   const [isDoneToday, setIsDoneToday] = useState(false);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
+  //   const lastDoneDate = localStorage.getItem('lastSunnahDate');
+  //   const today = new Date().toDateString();
+
+  //   setStreak(savedStreak);
+  //   setIsDoneToday(lastDoneDate === today);
+  // }, []);
+useEffect(() => {
+  if (typeof window !== 'undefined') {
     const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
     const lastDoneDate = localStorage.getItem('lastSunnahDate');
     const today = new Date().toDateString();
 
     setStreak(savedStreak);
     setIsDoneToday(lastDoneDate === today);
-  }, []);
-
+  }
+}, []); 
   const handleConfirm = () => {
     if (!isDoneToday) {
       const newStreak = streak + 1;
