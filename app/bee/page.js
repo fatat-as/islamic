@@ -2679,7 +2679,7 @@ const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
 
 
 
-export default function BeePage() {
+ function BeePage() {
   const [data, setData] = useState("");
 
   useEffect(() => {
