@@ -2688,16 +2688,17 @@ useEffect(() => {
     const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
     const lastDoneDate = localStorage.getItem('lastSunnahDate');
     const today = new Date().toDateString();
- let firstLoginDate = localStorage.getItem('firstLoginDate');
+
+    setStreak(savedStreak);
+    setIsDoneToday(lastDoneDate === today);
+  }
+   let firstLoginDate = localStorage.getItem('firstLoginDate');
 
 if (!firstLoginDate) {
   // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
   firstLoginDate = new Date().toISOString();
   localStorage.setItem('firstLoginDate', firstLoginDate);
 } 
-    setStreak(savedStreak);
-    setIsDoneToday(lastDoneDate === today);
-  }
 }, []); 
   const handleConfirm = () => {
     if (!isDoneToday) {
