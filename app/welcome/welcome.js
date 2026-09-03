@@ -64,8 +64,10 @@ if (onEnter) {
   onEnter();
 }
 };
-// لنتأكد إنه الكود عم يشتغل متصفح حصراً وما يصير مشاكل بالـ SSR if (!isMounted || !showWelcome) return null;
-return ( <div className={styles.welcomePage}> <div className={styles.content}> <div className={styles.emoji}> {/* // 1. إضافة الـ HTML الخاص بالـ Tenor داخل الـ div */}
+// لنتأكد إنه الكود عم يشتغل متصفح حصراً وما يصير مشاكل بالـ SSR 
+if (!isMounted || !showWelcome) return null;
+return ( <div className={styles.welcomePage}> <div className={styles.content}> <div className={styles.emoji}>
+   {/* // 1. إضافة الـ HTML الخاص بالـ Tenor داخل الـ div */}
       <h1>هل أنت مستعد لتبدأ معنا هذه الرحلة؟</h1>
 
       <p>رحلة جميلة نحو العلم والمعرفة 🤍</p>
