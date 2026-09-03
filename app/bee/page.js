@@ -1,5 +1,6 @@
 
-'use client';
+
+"use client";
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 // import { useState, useEffect, useRef, useCallback } from "react";
@@ -2648,13 +2649,13 @@ const SUNNAH_LIST = [
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 // 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
-let firstLoginDate = localStorage.getItem('firstLoginDate');
+// let firstLoginDate = localStorage.getItem('firstLoginDate');
 
-if (!firstLoginDate) {
-  // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
-  firstLoginDate = new Date().toISOString();
-  localStorage.setItem('firstLoginDate', firstLoginDate);
-}
+// if (!firstLoginDate) {
+//   // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
+//   firstLoginDate = new Date().toISOString();
+//   localStorage.setItem('firstLoginDate', firstLoginDate);
+// }
 
 // 2. حساب عدد الأيام المنقضية من أول دخول
 const startDate = new Date(firstLoginDate);
@@ -2687,7 +2688,13 @@ useEffect(() => {
     const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
     const lastDoneDate = localStorage.getItem('lastSunnahDate');
     const today = new Date().toDateString();
+ let firstLoginDate = localStorage.getItem('firstLoginDate');
 
+if (!firstLoginDate) {
+  // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
+  firstLoginDate = new Date().toISOString();
+  localStorage.setItem('firstLoginDate', firstLoginDate);
+} 
     setStreak(savedStreak);
     setIsDoneToday(lastDoneDate === today);
   }
