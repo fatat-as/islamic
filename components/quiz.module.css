@@ -1,0 +1,225 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@600;800&display=swap');
+
+.wrapper {
+  font-family: 'Baloo 2', sans-serif;
+  max-width: 640px;
+}
+
+.pixelTitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: #6B4EA0;
+  text-shadow: 2px 2px 0 #FBE0EE;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* شريط تقدّم على شكل XP bar بيكسل */
+.xpBarBg {
+  height: 18px;
+  background: #EDE6F5;
+  border: 3px solid #2E2340;
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+  image-rendering: pixelated;
+}
+.xpBarFill {
+  height: 100%;
+  background: repeating-linear-gradient(90deg, #B9E6C9 0, #B9E6C9 8px, #A3DAB6 8px, #A3DAB6 16px);
+  transition: width 0.3s ease;
+}
+
+.card {
+  background: #FFFDFB;
+  border: 3px solid #2E2340;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 #2E2340;
+  padding: 16px;
+  margin-bottom: 18px;
+  position: relative;
+}
+.card::before {
+  content: "★";
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  font-size: 16px;
+  color: #F4C86A;
+  text-shadow: 1px 1px 0 #2E2340;
+}
+
+.questionNum {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: #A78BFA;
+  margin-bottom: 8px;
+}
+
+.questionText {
+  font-weight: 800;
+  font-size: 15px;
+  color: #3B2A55;
+  margin-bottom: 12px;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 2.5px solid #E4DAF0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #4A3F5C;
+  transition: transform 0.1s ease;
+  background: #FBFAFE;
+}
+.optionLabel:hover {
+  transform: translateX(-2px);
+  border-color: #C9A8E0;
+}
+
+.optionCorrect {
+  background: #E3F7E8;
+  border-color: #6FCF97;
+  color: #227A4A;
+}
+.optionWrong {
+  background: #FDE8E8;
+  border-color: #F28B82;
+  color: #B3261E;
+}
+
+.submitButton {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 11px;
+  width: 100%;
+  background: #A78BFA;
+  color: #fff;
+  border: 3px solid #2E2340;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #2E2340;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.submitButton:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #2E2340;
+}
+
+.scoreCard {
+  text-align: center;
+  background: linear-gradient(160deg, #FBEFF6, #EDE6F5);
+  border: 3px solid #2E2340;
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 #2E2340;
+  padding: 24px;
+}
+.scoreTitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #6B4EA0;
+  margin-bottom: 10px;
+}
+.scorePercent {
+  font-size: 34px;
+  font-weight: 800;
+  color: #3B2A55;
+  margin-bottom: 10px;
+}
+.starsRow {
+  font-size: 26px;
+  letter-spacing: 4px;
+}
+.starFilled { color: #F4C86A; text-shadow: 1px 1px 0 #2E2340; }
+.starEmpty { color: #E4DAF0; }
+
+/* ============================================================
+   وضع سؤال واحد بكل مرة — حركات وانتقالات
+   ============================================================ */
+.slideIn {
+  animation: slideIn 0.35s ease-out;
+}
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.mascotWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.mascotHappy {
+  animation: bounceHappy 0.5s ease;
+}
+@keyframes bounceHappy {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-10px) scale(1.08); }
+  60% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-3px) scale(1.03); }
+}
+
+.mascotSad {
+  animation: shakeSad 0.45s ease;
+}
+@keyframes shakeSad {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-4px) rotate(-4deg); }
+  75% { transform: translateX(4px) rotate(4deg); }
+}
+
+.nextButton {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  width: 100%;
+  background: #6FCF97;
+  color: #fff;
+  border: 3px solid #2E2340;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #2E2340;
+  padding: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.nextButton:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #2E2340;
+}
+
+.progressDots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #E4DAF0;
+}
+.dotDone { background: #6FCF97; }
+.dotCurrent { background: #A78BFA; transform: scale(1.3); }
+
+
+
+/* في ملف quiz.module.css */
+.resultMotivationText {
+  font-size: 1.1rem;
+  color: #555; /* لون رمادي غامق مريح */
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}

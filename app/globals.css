@@ -1,0 +1,184 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #b5495b;
+  --color-accent: #d5808f;
+}
+
+html, body {
+  direction: rtl; /* site is Arabic-first; flip to ltr per-element for English content if needed */
+  font-family: 'Noto Naskh Arabic', 'Segoe UI', sans-serif;
+  background-color: #faf8f3;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-sm p-4 border-2 border-transparent;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover,
+.card:active {
+  transform: scale(1.035) translateY(-3px);
+  box-shadow: 0 12px 24px rgba(181, 73, 91, 0.18);
+  border-color: var(--color-accent);
+}
+
+.btn-primary {
+  @apply text-white rounded-xl px-4 py-2 font-medium transition-colors;
+  background-color: var(--color-primary);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent);
+}
+
+.progress-bar-bg {
+  @apply w-full bg-gray-200 rounded-full h-3 overflow-hidden;
+}
+.progress-bar-fill {
+  @apply bg-accent h-3 rounded-full transition-all duration-500;
+}
+
+/* ============================================================
+   روابط الـ Navbar — خط متحرك عند المرور بالماوس/اللمس،
+   وتنسيق مختلف (Bold + لون غامق) للرابط النشِط حاليًا
+   ============================================================ */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:active::after {
+  width: 100%;
+}
+
+.nav-link-active {
+  font-weight: 700;
+  color: #2a1015; /* لون غامق واضح يميّز الصفحة الحالية */
+}
+
+.nav-link-active::after {
+  width: 100%;
+  background-color: #2a1015;
+}
+
+/* ============================================================
+   الوضع الليلي — يُفعّل عند إضافة class="dark" على <html>
+   هاي تعريفات عامة بتغطي معظم عناصر الموقع تلقائيًا
+   ============================================================ */
+html.dark body {
+  background-color: #171717;
+  color: #e5e5e5;
+}
+
+html.dark .card {
+  background-color: #262626;
+  color: #e5e5e5;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #262626;
+  color: #e5e5e5;
+  border-color: #3a3a3a;
+}
+
+html.dark .text-gray-600,
+html.dark .text-gray-500,
+html.dark .text-gray-400,
+html.dark .text-gray-800 {
+  color: #c0c1c2 !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #262626 !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #333333 !important;
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200 {
+  border-color: #3a3a3a !important;
+}
+
+html.dark .bg-white {
+  background-color: #262626 !important;
+}
+
+/* ============================================================
+   الوضع البيج
+   ============================================================ */
+html.beige body {
+  background-color: #f3dfc6;
+  color: #4a3f35;
+}
+
+html.beige .card {
+  background-color: #f5efe3;
+  color: #4a3f35;
+}
+
+html.beige input,
+html.beige select,
+html.beige textarea {
+  background-color: #f5efe3;
+  color: #4a3f35;
+  border-color: #ddd0ba;
+}
+
+html.beige .bg-gray-50 {
+  background-color: #f5efe3 !important;
+}
+
+html.beige .bg-white {
+  background-color: #f5efe3 !important;
+}
+
+
+
+/* ============================================================
+   الوضع ج
+   ============================================================ */
+html.pink body {
+  background-color: #FAEBED;
+  color: #4a3f35;
+}
+
+html.pink .card {
+  background-color: #FBF4EB;
+  color: #4a3f35;
+}
+
+html.pink input,
+html.pink select,
+html.pink textarea {
+  background-color: #f5efe3;
+  color: #4a3f35;
+  border-color: #ddd0ba;
+}
+
+html.pink .bg-gray-50 {
+  background-color: #f5efe3 !important;
+}
+
+html.pink .bg-white {
+  background-color: #f5efe3 !important;
+}
