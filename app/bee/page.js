@@ -2676,20 +2676,6 @@ const diffWeeks = Math.floor(diffDays / 7);
 // 3. تحديد الـ Index الخاص بالسنة المهجورة بناءً على الأسبوع الحالي
 const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
  
-
-
-
- function BeePage() {
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    const savedData = localStorage.getItem("key");
-    if (savedData) {
-      setData(savedData);
-    }
-  }, []);
-
-}
 export default function IslamicLibraryApp() {
   const [streak, setStreak] = useState(0);
   const [isDoneToday, setIsDoneToday] = useState(false);
