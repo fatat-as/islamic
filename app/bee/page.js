@@ -1,7 +1,7 @@
 
 
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect,useMemo, useRef, useCallback } from "react";
 import Link from "next/link";
 import { supabase } from "../../lib/supabaseClient";
 import myImage from "../../public/images/badges/jana.jpg";
@@ -2652,21 +2652,21 @@ const SUNNAH_LIST = [
 
 
 export const dynamic = 'force-dynamic';
-export const fetchCache = 'force-no-store';
-// 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
-// let firstLoginDate = localStorage.getItem('firstLoginDate');
 
-// if (!firstLoginDate) {
-//   // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
-//   firstLoginDate = new Date().toISOString();
-//   localStorage.setItem('firstLoginDate', firstLoginDate);
-// }
-const [firstLoginDate, setFirstLoginDate] = useState(null);
-useEffect(() => { const savedDate = localStorage.getItem("firstLoginDate");
-if (savedDate) { setFirstLoginDate(savedDate); } else { const today = new Date().toISOString();
-localStorage.setItem("firstLoginDate", today);
-setFirstLoginDate(today);
-} }, []);
+// 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
+let firstLoginDate = localStorage.getItem('firstLoginDate');
+
+if (!firstLoginDate) {
+  
+  firstLoginDate = new Date().toISOString();
+  localStorage.setItem('firstLoginDate', firstLoginDate);
+}
+
+// useEffect(() => { const savedDate = localStorage.getItem("firstLoginDate");
+// if (savedDate) { setFirstLoginDate(savedDate); } else { const today = new Date().toISOString();
+// localStorage.setItem("firstLoginDate", today);
+// setFirstLoginDate(today);
+// } }, []);
 // 2. حساب عدد الأيام المنقضية من أول دخول
 const startDate = new Date(firstLoginDate);
 const currentDate = new Date();
