@@ -2646,6 +2646,7 @@ const SUNNAH_LIST = [
   }
 ];
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 // 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
 let firstLoginDate = localStorage.getItem('firstLoginDate');
 
