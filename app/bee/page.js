@@ -2656,7 +2656,7 @@ export const dynamic = 'force-dynamic';
 // 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
 let firstLoginDate = localStorage.getItem('firstLoginDate');
 
-if (!firstLoginDate || typeof window !== 'undefined') {
+if (!firstLoginDate ) {
   
   firstLoginDate = new Date().toISOString();
   localStorage.setItem('firstLoginDate', firstLoginDate);
