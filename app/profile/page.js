@@ -164,8 +164,8 @@ const Welcome = () => {
                         نسأل الله أن يتقبل هذا السعي، وأن يجعله حجةً لنا لا علينا، وأن يجمعنا في الفردوس الأعلى بلا حسابٍ ولا سابق عذاب.
                     </p>
 
-                    <div className="bg-amber-50/70 border-r-4 border-amber-500 p-6 rounded-2xl text-amber-950 text-sm md:text-base leading-relaxed shadow-inner">
-                        <div className="flex items-center gap-2 font-bold text-amber-900 text-lg mb-3">
+                    <div className=" border-r-4 border-amber-500 p-6 rounded-2xl text-amber-950 text-sm md:text-base leading-relaxed shadow-inner">
+                        <div className="flex items-center gap-2 font-bold text-amber-900 text-lg mb-3 bg-amber-500/70">
                             <span>💡</span>
                             <span>تذكرة :</span>
                         </div>
