@@ -2656,7 +2656,12 @@ export const fetchCache = 'force-no-store';
 //   firstLoginDate = new Date().toISOString();
 //   localStorage.setItem('firstLoginDate', firstLoginDate);
 // }
-
+const [firstLoginDate, setFirstLoginDate] = useState(null);
+useEffect(() => { const savedDate = localStorage.getItem("firstLoginDate");
+if (savedDate) { setFirstLoginDate(savedDate); } else { const today = new Date().toISOString();
+localStorage.setItem("firstLoginDate", today);
+setFirstLoginDate(today);
+} }, []);
 // 2. حساب عدد الأيام المنقضية من أول دخول
 const startDate = new Date(firstLoginDate);
 const currentDate = new Date();
@@ -2692,13 +2697,7 @@ useEffect(() => {
     setStreak(savedStreak);
     setIsDoneToday(lastDoneDate === today);
   }
-   let firstLoginDate = localStorage.getItem('firstLoginDate');
 
-if (!firstLoginDate) {
-  // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
-  firstLoginDate = new Date().toISOString();
-  localStorage.setItem('firstLoginDate', firstLoginDate);
-} 
 }, []); 
   const handleConfirm = () => {
     if (!isDoneToday) {
