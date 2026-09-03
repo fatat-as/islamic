@@ -2647,68 +2647,80 @@ const SUNNAH_LIST = [
 
 
 
+
+
+
+
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+// 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
+// let firstLoginDate = localStorage.getItem('firstLoginDate');
 
-import { useState, useEffect } from "react";
+// if (!firstLoginDate) {
+//   // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
+//   firstLoginDate = new Date().toISOString();
+//   localStorage.setItem('firstLoginDate', firstLoginDate);
+// }
+const [firstLoginDate, setFirstLoginDate] = useState(null);
+useEffect(() => { const savedDate = localStorage.getItem("firstLoginDate");
+if (savedDate) { setFirstLoginDate(savedDate); } else { const today = new Date().toISOString();
+localStorage.setItem("firstLoginDate", today);
+setFirstLoginDate(today);
+} }, []);
+// 2. حساب عدد الأيام المنقضية من أول دخول
+const startDate = new Date(firstLoginDate);
+const currentDate = new Date();
 
+// تصفير الساعات عشان الحساب يكون دقيق لكل يوم بيومه
+startDate.setHours(0, 0, 0, 0);
+currentDate.setHours(0, 0, 0, 0);
+
+const diffTime = Math.abs(currentDate - startDate);
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+// 3. تحديد الـ Index بناءً على عدد الأيام (مع استخدام باقي القسمة عشان يرجع يعيد المصفوفة لو خلصوا)
+const dayIndex = diffDays % dailyContent.length;
+
+
+// تحويل الأأسابيع (كل 7 أيام أسبوع كامل)
+const diffWeeks = Math.floor(diffDays / 7);
+
+// 3. تحديد الـ Index الخاص بالسنة المهجورة بناءً على الأسبوع الحالي
+const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
+ 
 export default function IslamicLibraryApp() {
   const [streak, setStreak] = useState(0);
   const [isDoneToday, setIsDoneToday] = useState(false);
 
-  // 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage بشكل آمن للسيرفر
-  let firstLoginDate = null;
+
+useEffect(() => {
   if (typeof window !== 'undefined') {
-    firstLoginDate = localStorage.getItem('firstLoginDate');
-    if (!firstLoginDate) {
-      firstLoginDate = new Date().toISOString();
-      localStorage.setItem('firstLoginDate', firstLoginDate);
-    }
+    const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
+    const lastDoneDate = localStorage.getItem('lastSunnahDate');
+    const today = new Date().toDateString();
+
+    setStreak(savedStreak);
+    setIsDoneToday(lastDoneDate === today);
   }
 
-  // 2. حساب عدد الأيام المنقضية من أول دخول (نفس كودك الأصلي)
-  const startDate = new Date(firstLoginDate || new Date());
-  const currentDate = new Date();
-
-  startDate.setHours(0, 0, 0, 0);
-  currentDate.setHours(0, 0, 0, 0);
-
-  const diffTime = Math.abs(currentDate - startDate);
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-  // 3. تحديد الـ Index بناءً على عدد الأيام والأسابيع (نفس كودك الأصلي تماماً)
-  const dayIndex = diffDays % dailyContent.length;
-  const diffWeeks = Math.floor(diffDays / 7);
-  const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
-  const currentSunnah = SUNNAH_LIST[sunnahIndex];
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
-      const lastDoneDate = localStorage.getItem('lastSunnahDate');
-      const today = new Date().toDateString();
-
-      setStreak(savedStreak);
-      setIsDoneToday(lastDoneDate === today);
-    }
-  }, []);
-
+}, []); 
   const handleConfirm = () => {
     if (!isDoneToday) {
       const newStreak = streak + 1;
       setStreak(newStreak);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('sunnahStreak', newStreak.toString());
-        localStorage.setItem('lastSunnahDate', new Date().toDateString());
-      }
+      localStorage.setItem('sunnahStreak', newStreak.toString());
+      localStorage.setItem('lastSunnahDate', new Date().toDateString());
       setIsDoneToday(true);
     }
   };
 
   const progress = Math.min((streak / 365) * 100, 100);
+  const currentWeek = useMemo(() => Math.floor(new Date().getDate() / 7) % SUNNAH_LIST.length, []);
+  const currentSunnah = SUNNAH_LIST[currentWeek];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6" dir="rtl">
-     
+      
       {/* الصندوق اليومي */}
       <div className="md:col-span-6 rounded-[40px] bg-[#fef9f3] p-8 border-2 border-[#ffccd5] shadow-sm">
         <h2 className="text-xl font-bold text-[#b5525c] text-center mb-6">🌸 الصندوق اليومي</h2>
@@ -2731,29 +2743,58 @@ export default function IslamicLibraryApp() {
       </div>
 
 <div
+
   className="
+
     md:col-span-6
+
     relative
+
     overflow-hidden
+
     rounded-[40px]
+
     p-6 md:p-8
+
     border border-white/40
+
     shadow-[0_10px_35px_rgba(180,100,140,0.18)]
+
   "
+
 >
+
   {/* الخلفية */}
+
   <div
+
     className="
+
       absolute inset-0
+
       bg-[url('../public/images/badges/p16.jpg')]
+
       bg-cover
+
       bg-center
+
       opacity-50
+
+     
+
       scale-105
+
     "
+
   />
+  {/* blur-[1px] */}
+  {/* طبقة شفافة فوق الخلفية */}
+{/* طبقة شفافة فوق الخلفية */}
+{/* 
+  <div className="absolute inset-0 bg-pink-100/30 backdrop-blur-[2px]" /> */}
 
   {/* المحتوى */}
+
   <div className="relative z-10">
 
 {/* العنوان */}
@@ -2763,7 +2804,7 @@ export default function IslamicLibraryApp() {
   </h2>
 
   <p className="text-xs text-[#b87991] mt-1">
-    أحيي سنة من سنن النبي ﷺ
+    أحيي سنة من سنن النبي ﷺ 
   </p>
 </div>
 
@@ -2786,6 +2827,7 @@ export default function IslamicLibraryApp() {
 
   {/* الحديث */}
   <div className="text-center mb-4">
+    
     <p className="text-xs md:text-sm text-gray-700 leading-7">
       {currentSunnah.hadith}
     </p>
@@ -2869,277 +2911,6 @@ export default function IslamicLibraryApp() {
 </div>
 </div>
 </div>
+// </div>
   );
 }
-
-
-
-
-
-
-
-
-
-// export const dynamic = 'force-dynamic';
-// export const fetchCache = 'force-no-store';
-// 1. جلب أو حفظ تاريخ أول دخول بالـ localStorage
-// let firstLoginDate = localStorage.getItem('firstLoginDate');
-
-// if (!firstLoginDate) {
-//   // إذا أول مرة بيسجل دخول، بنحفظ تاريخ اليوم
-//   firstLoginDate = new Date().toISOString();
-//   localStorage.setItem('firstLoginDate', firstLoginDate);
-// }
-// const [firstLoginDate, setFirstLoginDate] = useState(null);
-// useEffect(() => { const savedDate = localStorage.getItem("firstLoginDate");
-// if (savedDate) { setFirstLoginDate(savedDate); } else { const today = new Date().toISOString();
-// localStorage.setItem("firstLoginDate", today);
-// setFirstLoginDate(today);
-// } }, []);
-// 2. حساب عدد الأيام المنقضية من أول دخول
-// const startDate = new Date(firstLoginDate);
-// const currentDate = new Date();
-
-// تصفير الساعات عشان الحساب يكون دقيق لكل يوم بيومه
-// startDate.setHours(0, 0, 0, 0);
-// currentDate.setHours(0, 0, 0, 0);
-
-// const diffTime = Math.abs(currentDate - startDate);
-// const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-// 3. تحديد الـ Index بناءً على عدد الأيام (مع استخدام باقي القسمة عشان يرجع يعيد المصفوفة لو خلصوا)
-// const dayIndex = diffDays % dailyContent.length;
-
-
-// // تحويل الأأسابيع (كل 7 أيام أسبوع كامل)
-// const diffWeeks = Math.floor(diffDays / 7);
-
-// // 3. تحديد الـ Index الخاص بالسنة المهجورة بناءً على الأسبوع الحالي
-// const sunnahIndex = diffWeeks % SUNNAH_LIST.length;
- 
-// export default function IslamicLibraryApp() {
-//   const [streak, setStreak] = useState(0);
-//   const [isDoneToday, setIsDoneToday] = useState(false);
-
-
-// useEffect(() => {
-//   if (typeof window !== 'undefined') {
-//     const savedStreak = parseInt(localStorage.getItem('sunnahStreak') || '0', 10);
-//     const lastDoneDate = localStorage.getItem('lastSunnahDate');
-//     const today = new Date().toDateString();
-
-//     setStreak(savedStreak);
-//     setIsDoneToday(lastDoneDate === today);
-//   }
-
-// }, []); 
-//   const handleConfirm = () => {
-//     if (!isDoneToday) {
-//       const newStreak = streak + 1;
-//       setStreak(newStreak);
-//       localStorage.setItem('sunnahStreak', newStreak.toString());
-//       localStorage.setItem('lastSunnahDate', new Date().toDateString());
-//       setIsDoneToday(true);
-//     }
-//   };
-
-//   const progress = Math.min((streak / 365) * 100, 100);
-//   const currentWeek = useMemo(() => Math.floor(new Date().getDate() / 7) % SUNNAH_LIST.length, []);
-//   const currentSunnah = SUNNAH_LIST[currentWeek];
-
-//   return (
-//     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6" dir="rtl">
-      
-//       {/* الصندوق اليومي */}
-//       <div className="md:col-span-6 rounded-[40px] bg-[#fef9f3] p-8 border-2 border-[#ffccd5] shadow-sm">
-//         <h2 className="text-xl font-bold text-[#b5525c] text-center mb-6">🌸 الصندوق اليومي</h2>
-//         <div className="space-y-4">
-//           <div className="bg-white p-4 rounded-2xl border border-[#ffd1dc]">
-//             <p className="text-xs font-bold text-[#b5525c] mb-1">💡 فائدة</p>
-//             <p className="text-xs text-gray-600">{dailyContent[dayIndex].benefit}</p>
-//           </div>
-//           <div className="bg-white p-4 rounded-2xl border border-[#ffd1dc]">
-//             <p className="text-xs font-bold text-[#b5525c] mb-1">📜 حديث</p>
-//             <p className="text-xs text-gray-600">{dailyContent[dayIndex].hadith}</p>
-//           </div>
-//           <div className="bg-white p-4 rounded-2xl border border-[#ffd1dc] text-xs font-bold text-[#b5525c] ">
-//               <p className="text-xs font-bold text-[#b5525c] mb-1">📜 الآية</p>
-//             <p className="text-xs text-gray-600">{dailyContent[dayIndex].ayah}</p>
-//              <p className="text-xs text-gray-400 italic">{dailyContent[dayIndex].tadabbur}</p>
-//             </div>
-//             <img src={myImage.src || myImage} alt="bee" className="w-full h-full mx-auto mt-4" />
-//         </div>
-//       </div>
-
-// <div
-
-//   className="
-
-//     md:col-span-6
-
-//     relative
-
-//     overflow-hidden
-
-//     rounded-[40px]
-
-//     p-6 md:p-8
-
-//     border border-white/40
-
-//     shadow-[0_10px_35px_rgba(180,100,140,0.18)]
-
-//   "
-
-// >
-
-//   {/* الخلفية */}
-
-//   <div
-
-//     className="
-
-//       absolute inset-0
-
-//       bg-[url('../public/images/badges/p16.jpg')]
-
-//       bg-cover
-
-//       bg-center
-
-//       opacity-50
-
-     
-
-//       scale-105
-
-//     "
-
-//   />
-//   {/* blur-[1px] */}
-//   {/* طبقة شفافة فوق الخلفية */}
-// {/* طبقة شفافة فوق الخلفية */}
-// {/* 
-//   <div className="absolute inset-0 bg-pink-100/30 backdrop-blur-[2px]" /> */}
-
-//   {/* المحتوى */}
-
-//   <div className="relative z-10">
-
-// {/* العنوان */}
-// <div className="text-center mb-5">
-//   <h2 className="text-xl md:text-2xl font-bold text-[#b85b80]">
-//     🌸 السنن المهجورة
-//   </h2>
-
-//   <p className="text-xs text-[#b87991] mt-1">
-//     أحيي سنة من سنن النبي ﷺ 
-//   </p>
-// </div>
-
-// {/* بطاقة السنة */}
-// <div
-//   className="
-//     bg-white/60
-//     backdrop-blur-xl
-//     border border-white/60
-//     rounded-[28px]
-//     p-5 md:p-6
-//     mb-5
-//     shadow-sm
-//   "
-// >
-//   {/* اسم السنة */}
-//   <h3 className="text-lg font-bold text-[#e87ea8] text-center mb-4">
-//      {currentSunnah.name}
-//   </h3>
-
-//   {/* الحديث */}
-//   <div className="text-center mb-4">
-    
-//     <p className="text-xs md:text-sm text-gray-700 leading-7">
-//       {currentSunnah.hadith}
-//     </p>
-//   </div>
-
-//   {/* الراوي والمصدر */}
-//   <div className="flex flex-wrap justify-center gap-2 text-xs mb-3">
-//     <span className="bg-pink-100/70 px-3 py-1.5 rounded-full text-[#9d526e]">
-//       👤 الراوي: {currentSunnah.narrator}
-//     </span>
-
-//     <span className="bg-pink-100/70 px-3 py-1.5 rounded-full text-[#9d526e]">
-//       📚 {currentSunnah.source}
-//     </span>
-//   </div>
-
-//   {/* طريقة التطبيق */}
-//   <div className="bg-[#fff5f7]/80 rounded-2xl p-3 mt-4">
-//     <p className="text-xs text-[#9b6375] leading-6 text-center">
-//       💡 <span className="font-bold">طريقة التطبيق:</span>{" "}
-//       {currentSunnah.application}
-//     </p>
-//   </div>
-// </div>
-
-// {/* الـ Progress Bar */}
-// <div className="mb-5 bg-white/40 backdrop-blur-md rounded-2xl p-4">
-//   <div className="flex justify-between text-xs font-bold text-[#b85b80] mb-2">
-//     <span>مدة التزامك بالسنة</span>
-//     <span>{streak} / 365 يوم</span>
-//   </div>
-
-//   <div className="w-full bg-white/60 rounded-full h-3 overflow-hidden">
-//     <div
-//       className="
-//         bg-gradient-to-r
-//         from-[#f29ab7]
-//         to-[#d96f98]
-//         h-full
-//         rounded-full
-//         transition-all
-//         duration-500
-//       "
-//       style={{ width: `${progress}%` }}
-//     />
-//   </div>
-// </div>
-
-// {/* زر التأكيد */}
-// <button
-//   onClick={handleConfirm}
-//   disabled={isDoneToday}
-//   className={`
-//     w-full
-//     py-4
-//     rounded-2xl
-//     text-sm
-//     font-bold
-//     transition-all
-//     duration-300
-//     shadow-md
-//     ${
-//       isDoneToday
-//         ? "bg-[#d8799c]/80 text-white cursor-not-allowed"
-//         : `
-//           bg-gradient-to-r
-//           from-[#e982a8]
-//           to-[#d96894]
-//           text-white
-//           hover:scale-[1.02]
-//           hover:shadow-lg
-//           active:scale-[0.98]
-//         `
-//     }
-//   `}
-// >
-//   {isDoneToday
-//     ? "بارك الله فيك، أحييت السنة اليوم!"
-//     : "🌸 أحييت هذه السنة اليوم"}
-// </button>
-// </div>
-// </div>
-// </div>
-// // </div>
-//   );
-// }
