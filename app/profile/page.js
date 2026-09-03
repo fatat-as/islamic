@@ -159,7 +159,7 @@ const Welcome = () => {
                         <h2 className="text-2xl md:text-3xl font-bold text-amber-900">رسالة قصيرة قبل أن نبدأ</h2>
                     </div>
                     
-                    <p className="leading-relaxed text-slate-700 text-base md:text-lg mb-8 text-justify">
+                    <p className="leading-relaxed text-slate-700 text-base md:text-lg mb-8 text-justify bg-amber-100/70">
                         أسال الله العظيم أن يثبت خطواتكم، وأن يشرح صدوركم، وأن يجعل طلبكم للعلم خالصاً لوجهه الكريم. هذه الخطوة التي بدأتموها اليوم هي غراسٌ في طريق الجنة، فاستعينوا بالله ولا تعجزوا.<br/><br/>
                         نسأل الله أن يتقبل هذا السعي، وأن يجعله حجةً لنا لا علينا، وأن يجمعنا في الفردوس الأعلى بلا حسابٍ ولا سابق عذاب.
                     </p>
