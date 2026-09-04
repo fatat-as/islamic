@@ -43,7 +43,7 @@ export default function Navbar() {
         </button> 
         </div>
 
-      <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm: items-start sm: flex-col items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}>
+      <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}>
  {/*  /*/}
 {/* <div className={`flex sm:flex  sm: items-center gap-4 ${menuOpen ? "block" : "hidden"} sm:block`}> */}
             <Link href="/" className={navLinkClass("/")} title="الشيوخ">
