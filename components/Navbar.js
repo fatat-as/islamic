@@ -48,7 +48,8 @@ export default function Navbar() {
 
       menuOpen ? "flex" : "hidden"
 
-    } sm:hidden w-full border-t border-white/20 px-4 py-4`}
+    } sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full
+     sm:hidden`}
 
   >
 
