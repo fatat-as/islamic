@@ -31,8 +31,8 @@ export default function Navbar() {
 
 
   return (
-    <nav className="bg-primary text-white sticky top-0 z-50 shadow-md justify-between">
-       <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between">
+    <nav className="bg-primary text-white sticky top-0 z-50 shadow-md w-full">
+       <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between w-full">
         <div className="flex items-center gap-2 "> 
         
         <Image src="/images/badges/rih.jpg" width={60} height={60} className="font-bold rounded-full  object-cover"/>
@@ -58,7 +58,9 @@ export default function Navbar() {
 {/*   
           <div className="sm:hidden flex flex-wrap items-center justify-center gap-4 mt-4 pt-4 border-t border-white/20">
            */}
-            <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}>
+            {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
+   <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row items-center gap-4 px-4 py-3 border-t border-white/20 w-full overflow-x-auto}`}>
+    
     {/* العناصر بالعرض */}
 
     <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div> 
