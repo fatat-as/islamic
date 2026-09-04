@@ -143,7 +143,7 @@ const Welcome = () => {
                 <p className="text-slate-600 mt-2 text-base md:text-lg font-medium">أهلاً بكُم في رحلةٍ إلى الجنة.. 🤍</p>
             </header> */}
  {/* Header */}
-            <header className="bg-white shadow-sm py-6 px-4 text-center border-b border-amber-100">
+            <header className="bg-white/90 shadow-sm py-6 px-4 text-center border-b border-amber-100">
                 <h1 className="text-3xl md:text-4xl font-bold text-amber-900" style={{ fontFamily: 'Amiri, serif' }}>
                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                 </h1>
@@ -153,8 +153,8 @@ const Welcome = () => {
             <main className="max-w-4xl mx-auto px-4 py-10 space-y-10 w-full">
 
                 {/* About Me & Intention Section */}
-                <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-amber-100/80 transition-all hover:shadow-md">
-                    <div className="flex items-center gap-3 mb-6">
+                <section className="bg-white/90 rounded-3xl p-6 md:p-10 shadow-sm border border-amber-100/80 transition-all hover:shadow-md">
+                    <div className="  flex items-center gap-3 mb-6">
                         <span className="text-3xl">🌸</span>
                         <h2 className="text-2xl md:text-3xl font-bold text-amber-900">رسالة قصيرة قبل أن نبدأ</h2>
                     </div>
@@ -164,8 +164,8 @@ const Welcome = () => {
                         نسأل الله أن يتقبل هذا السعي، وأن يجعله حجةً لنا لا علينا، وأن يجمعنا في الفردوس الأعلى بلا حسابٍ ولا سابق عذاب.
                     </p>
 
-                    <div className=" border-r-4 border-amber-500 p-6 rounded-2xl text-amber-950 text-sm md:text-base leading-relaxed shadow-inner">
-                        <div className="flex items-center gap-2 font-bold text-amber-900 text-lg mb-3 bg-amber-500/70">
+                    <div className="bg-white/90 border-r-4 border-amber-500 p-6 rounded-2xl text-amber/90 text-sm md:text-base leading-relaxed shadow-inner">
+                        <div className="flex items-center gap-2 font-bold text-amber-900 text-lg mb-3 bg-amber-100/80">
                             <span>💡</span>
                             <span>تذكرة :</span>
                         </div>
