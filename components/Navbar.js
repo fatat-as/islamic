@@ -32,13 +32,13 @@ export default function Navbar() {
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50 shadow-md justify-between ">
-      <div className="max-w-6xl mx-auto px-4 py-3  items-center justify-between">
-        <div className="flex items-center gap-2 ">
+      <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between">
+        <div className="flex items-center gap-2 "> 
             {/* Mobile hamburger */}
-        <button className="sm:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="sm:hidden text-2xl focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
         </button> 
-         <Link href="/" className="text-xl font-bold"> <span>رحلة إلى الجنّة</span></Link>
+         <Link href="/" className="text-xl font-bold flex items-center grap-2"> <span>رحلة إلى الجنّة</span></Link>
        <Image src="/images/badges/rih.jpg" width={60} height={60} className="font-bold rounded-full  object-cover"/>
        
         </div>
