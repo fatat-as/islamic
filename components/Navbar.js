@@ -59,7 +59,7 @@ export default function Navbar() {
           <div className="sm:hidden flex flex-wrap items-center justify-center gap-4 mt-4 pt-4 border-t border-white/20">
            */}
             {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
-   <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col items-start gap-4 pb-4 px-4 border-t border-white/20 w-full overflow-x-auto}`}>
+   <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-wrap items-start gap-4 pb-4 px-4 border-t border-white/20 w-full overflow-x-auto}`}>
     
     {/* العناصر بالعرض */}
 
