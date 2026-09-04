@@ -70,8 +70,8 @@ function BookMindMap({ bookId, userId, bookTitle }) {
 
   return (
     <div className="max-w-2xl mx-auto my-6 p-6 bg-white rounded-3xl shadow-sm border border-gray-100 text-center">
-      <h2 className="text-xl font-bold mb-1 text-primary">🧠 الخريطة الذهنية التفاعلية</h2>
-      <p className="text-xs text-gray-400 mb-8">صممي خريطتك الذهنية بحرية، أضيفي الفروع وربطي أفكار كتاب "{bookTitle}"</p>
+      <h2 className="text-xl font-bold mb-1 text-primary"> الخريطة الذهنية التفاعلية</h2>
+      <p className="text-xs text-gray-400 mb-8">صمم خريطتك الذهنية بحرية، أضيف الفروع وربط أفكار كتاب "{bookTitle}"</p>
 
       {/* العقدة المركزية (قلب الخريطة الذهنية) */}
       <div className="relative flex justify-center mb-6">
@@ -128,7 +128,7 @@ function BookMindMap({ bookId, userId, bookTitle }) {
           isSaved ? "bg-green-500 text-white" : "bg-primary text-white hover:opacity-90"
         }`}
       >
-        {isSaved ? "تم حفظ الخريطة الذهنية بنجاح! 🎉" : "حفظ الخريطة الذهنية 💾"}
+        {isSaved ? "تم حفظ الخريطة الذهنية بنجاح! " : "حفظ الخريطة الذهنية "}
       </button>
     </div>
   );
@@ -229,7 +229,7 @@ export default function BookPage() {
           ["read", "قراءة الكتاب"],
           ["video", "شرح فيديو"],
           ["quiz", "اختبار قصير"],
-          ["mindmap", "🧠 الخريطة الذهنية"],
+          ["mindmap", " الخريطة الذهنية"],
           ["comments", "التعليقات والمناقشة"],
         ].map(([key, label]) => (
           <button
