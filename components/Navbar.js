@@ -32,20 +32,56 @@ export default function Navbar() {
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50 shadow-md justify-between">
-      <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between">
+       <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between">
         <div className="flex items-center gap-2 "> 
-        
-       <Image src="/images/badges/rih.jpg" width={60} height={60} className="font-bold rounded-full  object-cover"/>
-         <Link href="/" className="text-xl font-bold flex items-center grap-2"> <span>رحلة إلى الجنّة</span></Link>
-    {/* Mobile hamburger */}
-        <button className="sm:hidden text-2xl focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
-          ☰
-        </button> 
-        </div>
+{/*         
+//        <Image src="/images/badges/rih.jpg" width={60} height={60} className="font-bold rounded-full  object-cover"/>
+//          <Link href="/" className="text-xl font-bold flex items-center grap-2"> <span>رحلة إلى الجنّة</span></Link> */}
+    {/* Mobile hamburger */} 
+{/* //         <button className="sm:hidden text-2xl focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
+//           ☰
+//         </button> 
+//         </div> */}
 
-      <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}>
- {/*  /*/}
-{/* <div className={`flex sm:flex  sm: items-center gap-4 ${menuOpen ? "block" : "hidden"} sm:block`}> */}
+      {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
+
+{/* السطر الأساسي: Logo من جهة و Hamburger من جهة */}
+{/* اللوجو والاسم */}
+<div className="flex items-center gap-2">
+  <Image
+    src="/images/badges/rih.jpg"
+    width={60}
+    height={60}
+    alt="رحلة إلى الجنة"
+    className="rounded-full object-cover"
+  />
+
+  <Link
+    href="/"
+    className="text-xl font-bold flex items-center gap-2"
+  >
+    <span>رحلة إلى الجنّة</span>
+  </Link>
+</div>
+
+{/* Mobile Hamburger - بالجهة الثانية */}
+<button
+  className="sm:hidden text-3xl focus:outline-none"
+  onClick={() => setMenuOpen(!menuOpen)}
+  aria-label="فتح القائمة"
+>
+  ☰
+</button>
+
+{/* القائمة على الكمبيوتر */}
+<div className="hidden sm:flex items-center gap-4">
+  {/* حطي روابطك هون */}
+</div>
+{/* القائمة على الموبايل - تظهر تحت السطر الأساسي */}
+{/* العناصر بالعرض */}
+<div className="flex flex-row flex-wrap items-center justify-center gap-4 w-full">
+</div>
+{/* <div className={`flex sm:flex  sm: items-center gap-4 ${menuOpen ? "flex" : "hidden"} sm:block`}> */}
             <Link href="/" className={navLinkClass("/")} title="الشيوخ">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-people" viewBox="0 0 16 16">
               <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
