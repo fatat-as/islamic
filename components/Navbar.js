@@ -45,9 +45,9 @@ export default function Navbar() {
           ☰
         </button>
       </div>
-
+<br></br>
       {/* 2. السطر الثاني المستقل تماماً: القائمة تفتح بسطر جديد وتحت اللوجو والزر */}
-      <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row flex-wrap items-center justify-center gap-4 px-4 py-3 border-t border-white/20 w-full overflow-x-auto`}>
+      <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row flex-wrap items-center justify-center gap-4 px-4 py-3 border-t border-white/20 w-full `}>
         
         <Link href="/" className={navLinkClass("/")} title="الشيوخ">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-people" viewBox="0 0 16 16">
