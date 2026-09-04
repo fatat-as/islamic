@@ -207,11 +207,11 @@ export default function TranquilityJarPage() {
          
         </div>
 
-        {!motionEnabled && typeof window !== "undefined" && typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function" && (
+        {/* {!motionEnabled && typeof window !== "undefined" && typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function" && (
           <button className={styles.enableMotionBtn} onClick={requestMotionPermission}>
             📳 فعّل هزّ الجرة بالموبايل
           </button>
-        )}
+        )} */}
 
         <div className={styles.recordsCount}>{stars.length} رسالة مخزنة في الجرة</div>
 
