@@ -31,7 +31,7 @@ export default function Navbar() {
 
 
   return (
-    <nav className="bg-primary text-white sticky top-0 z-50 shadow-md ">
+    <nav className="bg-primary text-white sticky top-0 z-50 shadow-md justify-between">
        <div className="max-w-6xl mx-auto px-4 py-3  flex items-center justify-between">
         <div className="flex items-center gap-2 "> 
         
@@ -58,8 +58,7 @@ export default function Navbar() {
 {/*   
           <div className="sm:hidden flex flex-wrap items-center justify-center gap-4 mt-4 pt-4 border-t border-white/20">
            */}
-     <div className={`flex sm:flex sm:items-center gap-4 ${menuOpen ? "block" : "hidden"} sm:block`}>   
-
+            <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}>
     {/* العناصر بالعرض */}
 
     <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div> 
