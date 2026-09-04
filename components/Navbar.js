@@ -56,7 +56,7 @@ export default function Navbar() {
 
     {/* العناصر بالعرض */}
 
-    <div className="flex flex-row flex-wrap items-center justify-center gap-4 w-full"></div>  
+    <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div>  
 
       {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
 
