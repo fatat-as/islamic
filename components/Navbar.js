@@ -42,7 +42,7 @@ export default function Navbar() {
          <button className="sm:hidden text-2xl focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
          </button> 
-       <div
+       {/* {/* <div
 
     className={`${
 
@@ -51,14 +51,14 @@ export default function Navbar() {
     } sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full
      sm:hidden`}
 
-  >
+  > */}
 
+<div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-white/20 sm:border-none sm:mt-0 sm:pt-0`}>
     
 
     {/* العناصر بالعرض */}
 
-    <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div>  
-
+    <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div> 
       {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
 
 {/* <div className={`flex sm:flex  sm: items-center gap-4 ${menuOpen ? "flex" : "hidden"} sm:block`}> */}
