@@ -53,8 +53,12 @@ export default function Navbar() {
 
   > */}
 
-<div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-white/20 sm:border-none sm:mt-0 sm:pt-0`}>
+{/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-white/20 sm:border-none sm:mt-0 sm:pt-0`}> */}
     
+  
+          <div className="sm:hidden flex flex-wrap items-center justify-center gap-4 mt-4 pt-4 border-t border-white/20">
+          
+        
 
     {/* العناصر بالعرض */}
 
