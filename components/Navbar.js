@@ -37,10 +37,10 @@ export default function Navbar() {
        <Image src="/images/badges/rih.jpg" width={60} height={60} className="font-bold rounded-full  object-cover"/>
         <Link href="/" className="text-xl font-bold"> رحلة إلى الجنّة</Link>
         </div>
-        {/* Mobile hamburger
+        {/* Mobile hamburger */}
         <button className="sm:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
-        </button> */}
+        </button>
  {/*  /*/}
 <div className={`flex sm:flex sm:items-center gap-4 ${menuOpen ? "block" : "hidden"} sm:block`}>
             <Link href="/" className={navLinkClass("/")} title="الشيوخ">
