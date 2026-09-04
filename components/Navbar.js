@@ -59,11 +59,11 @@ export default function Navbar() {
           <div className="sm:hidden flex flex-wrap items-center justify-center gap-4 mt-4 pt-4 border-t border-white/20">
            */}
             {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
-   <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-row items-center gap-4 px-4 py-3 border-t border-white/20 w-full overflow-x-auto}`}>
+   <div className={`${menuOpen ? "flex" : "hidden"} sm:flex flex-col items-center gap-4 px-4 py-3 border-t border-white/20 w-full overflow-x-auto}`}>
     
     {/* العناصر بالعرض */}
 
-    <div className="flex flex-row flex-nowrap items-center justify-center gap-4 w-full"></div> 
+    <div className="flex flex-col flex-nowrap items-center justify-center gap-4 w-full"></div> 
       {/* <div className={`${menuOpen ? "flex" : "hidden"} sm:flex   sm: items-start sm: items-center gap-4 px-4 pb-4 sm:py-3 border-t border-white/20 sm:border-none w-full}`}> */}
 
 {/* <div className={`flex sm:flex  sm: items-center gap-4 ${menuOpen ? "flex" : "hidden"} sm:block`}> */}
