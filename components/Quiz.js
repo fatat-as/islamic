@@ -126,6 +126,7 @@ export default function Quiz({ bookId, userId }) {
         </div>
 
         <p className={styles.questionNum}>سؤال {current + 1} / {questions.length}</p>
+        <br></br><br></br>
         <p className={styles.questionText} style={{ marginTop: "10px" }}>{q.question}</p>
 
         {["a", "b", "c", "d"].map((opt) => {
