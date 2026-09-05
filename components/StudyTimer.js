@@ -35,27 +35,86 @@ export default function StudyTimer() {
     return () => clearInterval(intervalRef.current);
   }, [running]);
 
+  //dofeta 
+useEffect(() => { const unlockAudio = async () => { try { if (!audioCtxRef.current) { const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtxRef.current = new AudioContextClass();
+  }
+
+  if (audioCtxRef.current.state === "suspended") {
+    await audioCtxRef.current.resume();
+  }
+
+  console.log("🔊 الصوت جاهز");
+} catch (error) {
+  console.log("Audio unlock error:", error);
+}
+};
+document.addEventListener("click", unlockAudio, { once: true }); document.addEventListener("touchstart", unlockAudio, { once: true });
+return () => { document.removeEventListener("click", unlockAudio); document.removeEventListener("touchstart", unlockAudio); }; }, []);
+
+
+// 🔊 تشغيل صوت التنبيه 
+ const playBeep = async () => { try { if (!audioCtxRef.current) { const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  audioCtxRef.current = new AudioContextClass();
+}
+
+const ctx = audioCtxRef.current;
+
+// مهم جدًا لـ Safari
+if (ctx.state === "suspended") {
+  await ctx.resume();
+}
+
+for (let i = 0; i < 3; i++) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(880, ctx.currentTime);
+
+  const startTime = ctx.currentTime + i * 0.35;
+
+  gain.gain.setValueAtTime(0.001, startTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.2,
+    startTime + 0.03
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    startTime + 0.25
+  );
+
+  osc.start(startTime);
+  osc.stop(startTime + 0.26);
+}
+} catch (error) { console.log("Audio error:", error); } };
   // صوت تنبيه بسيط عبر Web Audio API — بلا حاجة لملف صوتي خارجي
-  const playBeep = () => {
-    try {
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      const ctx = audioCtxRef.current;
-      for (let i = 0; i < 3; i++) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.frequency.value = 880;
-        gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.35);
-        osc.start(ctx.currentTime + i * 0.35);
-        osc.stop(ctx.currentTime + i * 0.35 + 0.25);
-      }
-    } catch {
-      // بعض المتصفحات بتحتاج تفاعل مستخدم أول — تجاهلي الخطأ بأمان
-    }
-  };
+  // const playBeep = () => {
+  //   try {
+  //     if (!audioCtxRef.current) {
+  //       audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+  //     }
+  //     const ctx = audioCtxRef.current;
+  //     for (let i = 0; i < 3; i++) {
+  //       const osc = ctx.createOscillator();
+  //       const gain = ctx.createGain();
+  //       osc.connect(gain);
+  //       gain.connect(ctx.destination);
+  //       osc.frequency.value = 880;
+  //       gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.35);
+  //       osc.start(ctx.currentTime + i * 0.35);
+  //       osc.stop(ctx.currentTime + i * 0.35 + 0.25);
+  //     }
+  //   } catch {
+     
+     
+  //     // بعض المتصفحات بتحتاج تفاعل مستخدم أول — تجاهلي الخطأ بأمان
+  //   }
+  // };
 
   const triggerAlarm = () => {
     playBeep();
