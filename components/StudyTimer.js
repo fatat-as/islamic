@@ -208,7 +208,7 @@ for (let i = 0; i < 3; i++) {
                 onChange={(e) => setMinutesInput(parseInt(e.target.value) || 1)}
                 className="border rounded-lg p-2 w-full mb-3 text-center "
               />
-              <button onClick={start} className="btn-primary w-full">▶ ابدئي</button>
+              <button onClick={start} className="btn-primary w-full">▶ ابدأ </button>
             </>
           )}
 
